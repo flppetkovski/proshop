@@ -4,6 +4,7 @@ const express = require("express")
 const connectDB = require("./config/db")
 const {notFound} = require("./middleware/errorMiddleware")
 const productRoutes = require("./routes/productRoutes")
+const userRoutes = require("./routes/userRoutes")
 const { errorHandler } = require('./middleware/errorMiddleware')
 
 connectDB()
@@ -11,13 +12,14 @@ connectDB()
 const cors = require("cors")
 
 const app = express()
-
+app.use(express.json())
 app.use(cors())
 app.get("/", (req, res)=>{
  res.send("API is running")
 })
 
 app.use("/products", productRoutes)
+app.use("/users", userRoutes)
 
 app.use(notFound)
 
