@@ -26,7 +26,7 @@ dispatch(removeFromCart(productId))
 }
 
 const checkoutHandler = () =>{
-history.push("/log")
+history.push("/login?redirect=shipping")
 }
 
  return (
