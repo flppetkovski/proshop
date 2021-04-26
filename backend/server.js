@@ -15,6 +15,7 @@ const cors = require("cors")
 const app = express()
 app.use(express.json())
 app.use(cors())
+app.get("/config/paypal", (req,res)=> res.send(process.env.PAYMENT_CLIENT_ID))
 app.get("/", (req, res)=>{
  res.send("API is running")
 })
@@ -22,6 +23,8 @@ app.get("/", (req, res)=>{
 app.use("/products", productRoutes)
 app.use("/users", userRoutes)
 app.use("/orders", orderRoutes)
+
+
 
 app.use(notFound)
 

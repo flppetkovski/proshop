@@ -78,6 +78,7 @@ const orderSchema = mongoose.Schema({
   delieveredAt: {
   type: Date
  },
+  createdAt: { type: Date, default: Date.now }
 }, {
  timeStamps: true
 }
