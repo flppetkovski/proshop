@@ -6,7 +6,9 @@ const {notFound} = require("./middleware/errorMiddleware")
 const productRoutes = require("./routes/productRoutes")
 const userRoutes = require("./routes/userRoutes")
 const orderRoutes = require("./routes/orderRoutes")
+const uploadRoutes = require("./routes/uploadRoutes")
 const { errorHandler } = require('./middleware/errorMiddleware')
+const path = require("path")
 
 connectDB()
 
@@ -23,9 +25,11 @@ app.get("/", (req, res)=>{
 app.use("/products", productRoutes)
 app.use("/users", userRoutes)
 app.use("/orders", orderRoutes)
+app.use("/upload", uploadRoutes)
 
 
-
+const path_file = path.resolve()
+app.use("/uploads", express.static(path.join(path_file, "/uploads")))
 app.use(notFound)
 
 app.use(errorHandler)
