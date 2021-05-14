@@ -36,7 +36,10 @@ app.use("/uploads", express.static(path.join(path_file, "/uploads")))
 
 if (process.env.NODE_ENV === "production") {
  app.use(express.static(path.join(path_file, "/frontend/build")))
-res.sendFile(path.resolve(path_file, "frontend", "build", "index.html"))
+
+ app.get("*", (req, res)=>{
+  res.sendFile(path.resolve(path_file, "frontend", "build", "index.html"))
+ })
 
 } else {
  app.get("/", (req, res)=>{
