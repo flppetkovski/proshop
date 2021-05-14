@@ -22,9 +22,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json())
 app.use(cors())
 app.get("/config/paypal", (req,res)=> res.send(process.env.PAYMENT_CLIENT_ID))
-app.get("/", (req, res)=>{
- res.send("API is running")
-})
+
 
 app.use("/products", productRoutes)
 app.use("/users", userRoutes)
@@ -32,8 +30,22 @@ app.use("/orders", orderRoutes)
 app.use("/upload", uploadRoutes)
 
 
+
 const path_file = path.resolve()
 app.use("/uploads", express.static(path.join(path_file, "/uploads")))
+
+if (process.env.NODE_ENV === "production") {
+ app.use(express.static(path.join(path_file, "/frontend/build")))
+res.sendFile(path.resolve(path_file, "frontend", "build", "index.html"))
+
+} else {
+ app.get("/", (req, res)=>{
+  res.send("API IS RUNNING...")
+ })
+}
+
+
+
 app.use(notFound)
 
 app.use(errorHandler)
