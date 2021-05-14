@@ -3,6 +3,10 @@ const Product = require("../models/productModel")
 
 
 const getProducts = asyncHandler(async (req, res)=>{
+const pageSize = 10
+const page = Number(req.query.pageNumber) || 1
+
+
 
 const keyword = req.query.keyword ? {
  name: {
@@ -11,8 +15,9 @@ const keyword = req.query.keyword ? {
  }
 } : {}
 
- const products = await Product.find({...keyword})
-res.json(products)
+const count = await Product.countDocuments({...keyword})
+const products = await Product.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
+res.json({products, page, pages: Math.ceil(count / pageSize)})
 })
 
 
@@ -121,4 +126,12 @@ res.status(201).json({message: "Review added"})
 })
 
 
-module.exports = {getProducts, createProductReview, updateProduct, createProduct, getProductById, deleteProduct}
+const getTopProducts = asyncHandler(async (req, res)=>{
+const products = await Product.find({}).sort({rating: -1}).limit(3)
+res.json(products)
+})
+
+
+
+
+module.exports = {getProducts, getTopProducts, createProductReview, updateProduct, createProduct, getProductById, deleteProduct}
