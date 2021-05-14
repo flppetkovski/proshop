@@ -11,7 +11,7 @@ const config= {
   "Content-Type": "application/json"
   }
  }
-  const {data} = await axios.post("http://localhost:5000/users/login",
+  const {data} = await axios.post("/users/login",
    {email, password},
     config)
   
@@ -60,7 +60,7 @@ const config= {
   "Content-Type": "application/json"
   }
  }
-  const {data} = await axios.post("http://localhost:5000/users",
+  const {data} = await axios.post("/users",
    {name, email, password},
     config)
   
@@ -101,7 +101,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.get(`http://localhost:5000/users/${id}`,
+  const {data} = await axios.get(`/users/${id}`,
     config)
 
     dispatch({
@@ -137,7 +137,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.put(`http://localhost:5000/users/profile`, user,
+  const {data} = await axios.put(`/users/profile`, user,
     config)
 
     dispatch({
@@ -171,7 +171,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.get(`http://localhost:5000/users`,
+  const {data} = await axios.get(`/users`,
     config)
 
     dispatch({
@@ -206,7 +206,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  await axios.delete(`http://localhost:5000/users/${id}`,
+  await axios.delete(`/users/${id}`,
     config)
 
     dispatch({
@@ -241,7 +241,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
- const {data} = await axios.put(`http://localhost:5000/users/${user._id}`, user,
+ const {data} = await axios.put(`/users/${user._id}`, user,
     config)
 
     dispatch({

@@ -27,7 +27,7 @@ try {
  dispatch({
   type: PRODUCT_LIST_REQUEST
  })
-const {data}  = await axios.get(`http://localhost:5000/products?keyword=${keyword}&pageNumber=${pageNumber}`)
+const {data}  = await axios.get(`/products?keyword=${keyword}&pageNumber=${pageNumber}`)
 dispatch({
  type: PRODUCT_LIST_SUCCESS,
  payload: data
@@ -49,7 +49,7 @@ try {
  dispatch({
   type: PRODUCT_DETAILS_REQUEST
  })
-const {data}  = await axios.get(`http://localhost:5000/products/${id}`)
+const {data}  = await axios.get(`/products/${id}`)
 dispatch({
  type: PRODUCT_DETAILS_SUCCESS,
  payload: data
@@ -84,7 +84,7 @@ dispatch({
       },
     }
 
-     await axios.delete(`http://localhost:5000/products/${id}`, config)
+     await axios.delete(`/products/${id}`, config)
 
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
@@ -116,7 +116,7 @@ dispatch({
       },
     }
 
-   const {data} =  await axios.post(`http://localhost:5000/products`, {}, config)
+   const {data} =  await axios.post(`/products`, {}, config)
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -149,7 +149,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       },
     }
 
-   const {data} =  await axios.put(`http://localhost:5000/products/${product._id}`, product, config)
+   const {data} =  await axios.put(`/products/${product._id}`, product, config)
 
     dispatch({
       type: PRODUCT_UPDATE_SUCCESS,
@@ -182,7 +182,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-await axios.post(`http://localhost:5000/products/${productId}/reviews`, review, config)
+await axios.post(`/products/${productId}/reviews`, review, config)
 
     dispatch({
       type: PRODUCT_CREATE_REVIEW_SUCCESS,
@@ -203,7 +203,7 @@ try {
  dispatch({
   type: PRODUCT_TOP_REQUEST
  })
-const {data}  = await axios.get(`http://localhost:5000/products/top`)
+const {data}  = await axios.get(`/products/top`)
 dispatch({
  type: PRODUCT_TOP_SUCCESS,
  payload: data

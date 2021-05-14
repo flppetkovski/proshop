@@ -15,7 +15,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.post(`http://localhost:5000/orders`, order,
+  const {data} = await axios.post(`/orders`, order,
     config)
 
     dispatch({
@@ -49,7 +49,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.get(`http://localhost:5000/orders/${id}`,
+  const {data} = await axios.get(`/orders/${id}`,
     config)
 
     dispatch({
@@ -82,7 +82,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.put(`http://localhost:5000/orders/${orderId}/pay`, paymentResult,
+  const {data} = await axios.put(`/orders/${orderId}/pay`, paymentResult,
     config)
 
     dispatch({
@@ -115,7 +115,7 @@ const config= {
   Authorization: `Bearer ${userInfo.token}`
   }
  }
-  const {data} = await axios.put(`http://localhost:5000/orders/${order._id}/deliver`, {},
+  const {data} = await axios.put(`/orders/${order._id}/deliver`, {},
     config)
 
     dispatch({
@@ -154,7 +154,7 @@ const config= {
       },
     }
 
-    const { data } = await axios.get(`http://localhost:5000/orders/myorders`, config)
+    const { data } = await axios.get(`/orders/myorders`, config)
 
     dispatch({
       type: ORDER_LIST_MY_SUCCESS,
@@ -192,7 +192,7 @@ const config= {
       },
     }
 
-    const { data } = await axios.get(`http://localhost:5000/orders`, config)
+    const { data } = await axios.get(`/orders`, config)
 
     dispatch({
       type: ORDER_LIST_SUCCESS,
