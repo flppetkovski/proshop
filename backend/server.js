@@ -9,12 +9,16 @@ const orderRoutes = require("./routes/orderRoutes")
 const uploadRoutes = require("./routes/uploadRoutes")
 const { errorHandler } = require('./middleware/errorMiddleware')
 const path = require("path")
-
+const morgan = require("morgan")
 connectDB()
 
 const cors = require("cors")
 
 const app = express()
+if (process.env.NODE_ENV === "development") {
+ app.use(morgan("dev"))
+}
+
 app.use(express.json())
 app.use(cors())
 app.get("/config/paypal", (req,res)=> res.send(process.env.PAYMENT_CLIENT_ID))
