@@ -35,7 +35,6 @@ const submitHandler = (e) => {
  } else {
 
   dispatch(register(name,email, password))
-  history.push("/")
  }
 }
 
