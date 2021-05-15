@@ -60,7 +60,7 @@ const config= {
   "Content-Type": "application/json"
   }
  }
-  const {data} = await axios.post("https://petkovski-proshop.herokuapp.com/users",
+  const {data} = await axios.post("/users",
    {name, email, password},
     config)
   
